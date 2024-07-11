@@ -14,14 +14,14 @@ const db = mysql.createConnection({
     database: 'catalogo_aula'
 })
 
-db.connect( err => {
+db.connect(err => {
     if (err) {
         throw err
     }
     console.log('Conectado ao banco com sucesso!')
 })
 
-app.use(bodyParser.urlencoded({extended:false}))
+app.use(bodyParser.urlencoded({ extended: false }))
 
 app.set('view engine', 'ejs')
 
@@ -31,12 +31,12 @@ app.use('/css', express.static(path.join(__dirname, 'node_modules/bootstrap/dist
 
 app.use('/js', express.static(path.join(__dirname, 'node_modules/bootstrap/dist/js')))
 
-app.get('/add_product', (req,res) => {
+app.get('/add_product', (req, res) => {
     res.render('add_product')
 })
 
-app.post('/add_product', (req,res) => {
-    
+app.post('/add_product', (req, res) => {
+
     const { name, quantity, price } = req.body
 
     if (!name || !quantity || !price) {
@@ -55,7 +55,7 @@ app.post('/add_product', (req,res) => {
 })
 
 
-app.get('/products', (req,res) => {
+app.get('/products', (req, res) => {
     let sql = 'SELECT * FROM products'
 
     db.query(sql, (err, result) => {
@@ -63,6 +63,18 @@ app.get('/products', (req,res) => {
             throw err
         }
         res.render('list_products', { products: result })
+    })
+})
+
+app.get('/delete_product/:id', (req,res) => {
+    const {id} = req.params
+    let sql = 'DELETE FROM products WHERE id= ?'
+    db.query(sql, [id], (err, result) => {
+        if(err) {
+            throw err
+        }
+        console.log('Produto apagado', result)
+        res.redirect('/products')
     })
 })
 

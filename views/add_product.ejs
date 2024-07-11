@@ -6,11 +6,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add product</title>
     <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <style>
+        .active-button {
+            background-color: green;
+            /* Ou a cor de fundo desejada */
+            color: white;
+        }
+    </style>
 </head>
 
 <body>
-    <div class="container">
-        <h1>Add product</h1>
+    <div class="container col-5">
+
+        <nav class="navbar bg-body-tertiary">
+            <form class="container-fluid justify-content-start">
+                <a class="text-decoration-none text-reset" href="/add_product/"><button id="add-list-btn"
+                        class="btn btn-outline-success me-2" type="button">Add
+                        Product</button></a>
+                <a class="text-decoration-none text-reset" href="/products/"><button id="product-list-btn"
+                        class="btn btn-outline-success me-2" type="button">Product
+                        list</button></a>
+            </form>
+        </nav>
+
         <form action="/add_product" method="post">
 
             <label for="name">Name: </label>
@@ -28,6 +46,20 @@
     </div>
 
     <script src="/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Obtenha a URL atual
+            const currentUrl = window.location.pathname;
+    
+            // Verifique a URL e adicione a classe 'active-button' ao botão correspondente
+            if (currentUrl.includes("/add_product")) {
+                document.getElementById("add-product-btn").classList.add("active-button");
+            } else if (currentUrl.includes("/products")) {
+                document.getElementById("product-list-btn").classList.add("active-button");
+            }
+        });
+    </script>
+    
 </body>
 
 </html>

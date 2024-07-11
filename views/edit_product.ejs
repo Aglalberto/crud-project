@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit product</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <style>
+        .active-button {
+            background-color: green;
+            /* Ou a cor de fundo desejada */
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-5">Edit product</h1>
+
+        <form action="/edit_product/<%= prod.id %>" method="post">
+
+            <label for="name">Name: </label>
+            <input class="form-control" required type="text" id="name" value="<%= prod.nome %>" name="name">
+
+            <label for="quantity">Quantity: </label>
+            <input class="form-control" required type="number" id="quantity" name="quantity" value="<%= prod.quantity %>">
+
+            <label for="price">Price: </label>
+            <input class="form-control" required type="number" step="0.01" id="price" name="price" value="<%= prod.price %>">
+            
+            <button class="btn btn-primary mt-3 w-100">Save</button>
+
+        </form>
+    </div>
+
+    <script src="/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

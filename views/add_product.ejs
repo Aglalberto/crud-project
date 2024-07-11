@@ -20,7 +20,7 @@
 
         <nav class="navbar bg-body-tertiary">
             <form class="container-fluid justify-content-start">
-                <a class="text-decoration-none text-reset" href="/add_product/"><button id="add-list-btn"
+                <a class="text-decoration-none text-reset" href="/add_product/"><button id="add-product-btn"
                         class="btn btn-outline-success me-2" type="button">Add
                         Product</button></a>
                 <a class="text-decoration-none text-reset" href="/products/"><button id="product-list-btn"
@@ -38,8 +38,8 @@
             <input class="form-control" required type="number" id="quantity" name="quantity">
 
             <label for="price">Price: </label>
-            <input class="form-control" required type="number" id="price" name="price">
-
+            <input class="form-control" required type="number" step="0.01" id="price" name="price">
+            
             <button class="btn btn-primary mt-3 w-100">ADD +</button>
 
         </form>
@@ -58,6 +58,8 @@
                 document.getElementById("product-list-btn").classList.add("active-button");
             }
         });
+
+        
     </script>
     
 </body>

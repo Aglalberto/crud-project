@@ -78,6 +78,34 @@ app.get('/delete_product/:id', (req,res) => {
     })
 })
 
+app.get('/edit_product/:id', (req,res) => {
+    const {id} = req.params
+    let sql = 'SELECT * FROM products WHERE id= ?'
+    db.query(sql, [id], (err, result) => {
+        if (err) {
+            throw err
+        }
+
+        res.render('edit_product', { prod: result[0]})
+    })
+})
+
+app.post('/edit_product/:id', (req,res) => {
+    const {id} = req.params
+
+    const { name, quantity, price } = req.body
+    
+    let sql = 'UPDATE products SET nome = ?, quantity = ?, price = ? WHERE id = ?'
+    
+    db.query(sql, [name,quantity,price, id] ,(err, result) => {
+        if(err) {
+            throw err
+        }
+
+        res.redirect('/products')
+    })
+})
+
 app.listen(3000, () => {
     console.log('Server is running.')
 })
